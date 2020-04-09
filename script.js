@@ -27,12 +27,13 @@ $( document ).ready(function() {
 
     function goTable(city)
     {
-        console.log('func');
+
         $.get(cityState, function( data ) {
             aggregate = 0;
             previousRow = 0;
             percentage = 0
             increment = 0
+            $("#tableBody").empty();
 
             $.each(JSON.parse(data), function(index, value){
                 if(value.denominazione_provincia === city && value.totale_casi != 0)
@@ -42,7 +43,6 @@ $( document ).ready(function() {
                         percentage = (100*increment) / previousRow;
                     aggregate++;
                     previousRow = value.totale_casi;
-                    console.log(percentage);
                     $("#tableBody")
                     .append($('<tr>')
                     .append($('<th>').append(aggregate))
