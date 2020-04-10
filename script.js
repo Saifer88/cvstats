@@ -54,7 +54,7 @@ $( document ).ready(function() {
                 .append($('<tr>')
                 .append($('<th>').append(aggregate))
                 .append($('<td>').append(city))
-                .append($('<td>').append(value.data))
+                .append($('<td>').append(value.data.slice(0, -9)))
                 .append($('<td>').append(value.totale_casi))
                 .append($('<td>').append(increment))
                 .append($('<td>').append(adjustNumber(percentage) + "%")));
