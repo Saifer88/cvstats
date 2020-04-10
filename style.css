@@ -1,0 +1,19 @@
+.content
+{
+    padding-top: 20px;
+}
+
+.table
+{
+    display: none;
+}
+
+ /* Table scroll */
+ .my-custom-scrollbar {
+    position: relative;
+    height: 80vh;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
