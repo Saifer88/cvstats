@@ -3,7 +3,6 @@ function adjustNumber(number)
     if (number % 1 != 0)
     {
         number = number.toFixed(1);
-        console.log(number);
         if (number % 1 == 0)
             number = number.slice(0,-2);
     }
