@@ -11,32 +11,90 @@
     <body>
 
         <div class="container">
-          <div class="content">
-            <form>
-              <div class="form-row align-items-center">
-                <div class="col-auto my-1">
-                  <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                  <select class="custom-select mr-sm-2" id="citySelect">
-                    <option selected>Choose...</option>
-                  </select>
-                </div>
-                <div class="col-auto my-1">
-                  <button id="submit" type="button" class="btn btn-primary">Visualizza</button>
+          <div class="row">
+            <div class="col-2">
+              <div class="content">
+                <form>
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                      <select class="custom-select mr-sm-2" id="citySelect">
+                        <option selected>Choose...</option>
+                      </select>
+                    </div>
+                    <div class="col-auto my-1">
+                      <button id="submit" type="button" class="btn btn-primary">Visualizza</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-3">
+            <div class="content">
+              <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-primary">REGIONE</div>
+                <div class="card-body text-primary">
+                  <p class="card-text" id="regione"></p>
                 </div>
               </div>
-            </form>
-            <br>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <div class="content">
+              <div class="card border-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-danger">CONTAGI</div>
+                <div class="card-body text-danger">
+                  <p class="card-text" id="contagi"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="content">
+              <div class="card border-success  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-success">GUARITI</div>
+                <div class="card-body text-success">
+                  <p class="card-text" id="guariti"></p>
+                </div>
+              </div>
+          </div>
+          </div>
+          <div class="col-2">
+            <div class="content">
+              <div class="card border-secondary  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-secondary">DECESSI</div>
+                <div class="card-body text-secondary">
+                  <p class="card-text" id="decessi"></p>
+                </div>
+              </div>
+          </div>
+          </div>
+          <div class="col-2">
+            <div class="content">
+              <div class="card border-info  mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-info">TAMPONI</div>
+                <div class="card-body text-info">
+                  <p class="card-text" id="tamponi"></p>
+                </div>
+              </div>
+          </div>
+          </div>
+          </div>
+
+          
+            <div></div>
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
               <table class="table table-striped table-bordered">
-              <thead>
+              <thead class="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Luogo</th>
+                  <th scope="col" id="provincia"></th>
                   <th scope="col">Data</th>
                   <th scope="col">Casi totali</th>
                   <th scope="col">Incremento</th>
                   <th scope="col">%</th>
-
                 </tr>
               </thead>
               <tbody id="tableBody">
