@@ -1,16 +1,20 @@
 const cityListUrl = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province-latest.json";
-const cityState = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json";
-const regionState = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni-latest.json";
 
 
-var stateCache = 0;
-var regionCache = 0;
+var totalCasesChart;
+var incrementChart;
+var percentageIncrementChart;
+
 
 $( document ).ready(function() {
     
     function init()
     {
-        $("#submit").click(function(){
+        totalCasesChart = createChart('#totalCasesChart', 'Casi Totali', 'rgb(255, 57, 57)');
+        incrementChart = createChart('#incrementChart', 'Incrementi', 'rgb(50, 106, 236)');
+        percentageIncrementChart = createChart('#percentageIncrementChart', 'Percentuale Incrementi', 'rgb(249, 141, 0)');
+
+        $("#citySelect").change(function(){
             goTable($("#citySelect option:selected").text())
           });
 
@@ -21,29 +25,10 @@ $( document ).ready(function() {
                         new Option(value.denominazione_provincia, value.denominazione_provincia));
             });
             sortOptions();
+            $('#citySelect').val('Bergamo').change();
+            $('#citySelect').focus();
+
           });
-    }
-
-    function getCityState()
-    {
-        if (stateCache != 0)
-            return new Promise(resolve =>  resolve(stateCache));
-
-        return $.get(cityState, function( data ) {
-            stateCache = data;
-            return stateCache;
-        });
-    }
-
-    function getRegionState()
-    {
-        if (regionCache != 0)
-            return new Promise(resolve =>  resolve(regionCache));
-
-        return $.get(regionState, function( data ) {
-            regionCache = data;
-            return regionCache;
-        });
     }
 
     async function goTable(city)
@@ -55,10 +40,12 @@ $( document ).ready(function() {
         percentage = 0
         increment = 0
         $("#tableBody").empty();
-        $(".table").show();
         $("#provincia").text(city);
         region = undefined;
-        console.log(regionsState);
+        dateLabels = [];
+        cases = [];
+        increments = [];
+        percentageIncrements = [];
 
         $.each(JSON.parse(state), function(index, value){
             if(value.denominazione_provincia === city && value.totale_casi != 0)
@@ -69,6 +56,10 @@ $( document ).ready(function() {
                     percentage = (100*increment) / previousRow;
                 aggregate++;
                 previousRow = value.totale_casi;
+                dateLabels.push(value.data.slice(5, -9));
+                cases.push(value.totale_casi);
+                increments.push(increment);
+                percentageIncrements.push(adjustNumber(percentage));
                 $("#tableBody")
                 .append($('<tr>')
                 .append($('<td>').append(aggregate))
@@ -81,24 +72,23 @@ $( document ).ready(function() {
         $.each(JSON.parse(regionCache), function(index, value){
             if (value.codice_regione === region)
             {
-                console.log(value);
                 $("#contagi").text(value.totale_casi);
                 $("#guariti").text(value.dimessi_guariti);
                 $("#decessi").text(value.deceduti);
                 $("#tamponi").text(value.tamponi);
                 $("#regione").text(value.denominazione_regione);
             }
-        })
+        });
+        updateChart(totalCasesChart, dateLabels, cases);
+        updateChart(incrementChart, dateLabels, increments);
+        updateChart(percentageIncrementChart, dateLabels, percentageIncrements);
     }
 
-
-    
     init();
     });
 
 
     /* TODO
+        Footer
         Dati totali Italia
-        Tabella a comparsa
-        Grafici!
     */

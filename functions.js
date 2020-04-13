@@ -20,3 +20,25 @@ function sortOptions()
     });
     options.appendTo("#citySelect");   
 }
+
+function createChart(element, name, color)
+{
+    return new Chart($(element), 
+    {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: name,
+                backgroundColor: color,
+                borderColor: 'rgb(0, 0, 0)',
+            }]
+        }
+    });
+}
+
+function updateChart(element, labels, dataset)
+{
+    element.data.datasets[0].data = dataset;
+    element.data.labels = labels;
+    element.update();
+}

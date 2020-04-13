@@ -3,11 +3,16 @@
     padding-top: 20px;
 }
 
-.table
+.results
 {
     display: none;
 }
 
+.bordered
+{
+    border: orange 2px solid;
+    margin: 20px;
+}
 th
 {   position: sticky;
     top: 0px;
@@ -27,7 +32,7 @@ th
  /* Table scroll */
  .my-custom-scrollbar {
     position: relative;
-    height: 50vh;
+    height: 75vh;
     overflow: auto;
     }
     .table-wrapper-scroll-y {
@@ -45,5 +50,5 @@ th
 {
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 19px;
 }
