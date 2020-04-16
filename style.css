@@ -1,3 +1,7 @@
+body
+{
+    font-family: cursive;
+}
 .content
 {
     padding-top: 20px;
@@ -44,11 +48,36 @@ th
     text-align: center;
     color: white;
     font-weight: bold;
+    font-size: 15px;
 }    
 
 .card-text
 {
     text-align: center;
     font-weight: bold;
-    font-size: 19px;
+    font-size: 16px;
+}
+
+.credits
+{
+    max-width: 18rem;
+    position: fixed;
+    right:20px;
+    bottom:20px;
+}
+
+.credits .card-text
+{
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.credits .card-text a
+{
+    font-weight: bold;
+}
+
+.credits .card-text:hover
+{
+    text-decoration: none;
 }

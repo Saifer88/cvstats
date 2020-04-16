@@ -89,6 +89,5 @@ $( document ).ready(function() {
 
 
     /* TODO
-        Footer
         Dati totali Italia
     */
